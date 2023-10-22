@@ -38,11 +38,12 @@ public class AuthController {
 
             User user = (User) authenticate.getPrincipal();
             user.setPassword(null);
-
+            String tok = jwtUtil.generateToken(user);
+            System.out.println(tok);
             return ResponseEntity.ok()
                     .header(
                             HttpHeaders.AUTHORIZATION,
-                            jwtUtil.generateToken(user)
+                            tok
                     )
                     .body(user.getUsername());
         } catch (BadCredentialsException ex) {
