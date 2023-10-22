@@ -39,7 +39,6 @@ public class JwtFilter extends OncePerRequestFilter {
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (!StringUtils.hasText(header) || (StringUtils.hasText(header) && !header.startsWith("Bearer "))) {
             filterChain.doFilter(request,response);
-            System.out.println("no user!");
             return;
         }
 
